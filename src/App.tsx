@@ -1,13 +1,6 @@
 import './App.css'
 import { Table } from './components/Table'
-
-export interface Employee {
-  id: string;
-  firstname: string;
-  lastname: string;
-  salary: number;
-  status: string;
-}
+import { Employee } from './models/Employee';
 
 function App() {
   const mockData: Employee[] = [
