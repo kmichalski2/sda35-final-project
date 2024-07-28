@@ -36,9 +36,11 @@ function App() {
 
   return (
     <>
-      <h1>Employees</h1>
+      <main className='container'>
+        <h1 className='pt-4 pb-4'>Employees</h1>
 
-      <Table data={mockData}></Table>
+        <Table data={mockData}></Table>
+      </main>
     </>
   )
 }
