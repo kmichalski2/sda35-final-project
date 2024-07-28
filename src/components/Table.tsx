@@ -14,7 +14,9 @@ export function Table({data}: TableProps) {
 
         const d = data.filter(item => {
             return item.firstname.toLowerCase().includes(phrase) || 
-                   item.lastname.toLowerCase().includes(phrase);
+                   item.lastname.toLowerCase().includes(phrase) || 
+                   item.phonenumber.toString().includes(phrase); 
+                   
         });
 
         setDisplayDate(d);
