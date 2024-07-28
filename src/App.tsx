@@ -5,7 +5,7 @@ import { Employee } from './models/Employee';
 function App() {
   const mockData: Employee[] = [
     {
-      id: '1',
+      id: '5',
       firstname: 'John',
       lastname: 'Doe',
       salary: 5000,
@@ -21,7 +21,7 @@ function App() {
       phonenumber: 123123123,
     },
     {
-      id: '3',
+      id: '1',
       firstname: 'Adam',
       lastname: 'Nowak',
       salary: 25000,
