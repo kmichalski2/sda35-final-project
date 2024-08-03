@@ -1,7 +1,11 @@
+import React from "react";
 import { Table } from "../components/Table";
 import { Employee } from "../models/Employee";
+import { useNavigate } from "react-router-dom";
 
 export function EmployeesPage() {
+    const navigate = useNavigate();
+
     const mockData: Employee[] = [
         {
           id: '5',
@@ -51,11 +55,20 @@ export function EmployeesPage() {
           postalcode: '44333',
           city: 'Kraków'
         },
-      ]
+      ];
+
+
+      const handleAddClick = (event: React.MouseEvent): void => {
+        event.preventDefault();
+        navigate('/add');
+      }
 
     return (
         <>
-            <h1 className='pt-4 pb-4'>Employees</h1>
+            <div className="d-flex justify-content-between align-items-center">
+                <h1 className='pt-4 pb-4'>Employees</h1>
+                <button onClick={handleAddClick} className="btn btn-primary">Add</button>
+            </div>
 
             <Table data={mockData}></Table>  
         </>
