@@ -1,8 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import { createEmployee } from "../services/API";
+import { EmployeeStatus } from "../models/Employee";
+
+interface StatusOption { 
+    label: string, 
+    value: EmployeeStatus 
+}
 
 export function AddPage() {
     const navigate = useNavigate();
+    const statusOptions: StatusOption[] = [
+        {
+            label: 'Zatrudniony',
+            value: 'HIRED'
+        },
+        {
+            label: 'Na Urlopie',
+            value: 'ON_LEAVE'
+        },
+        {
+            label: 'Zwolniony',
+            value: 'FIRED'
+        }
+    ]
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
@@ -27,45 +47,47 @@ export function AddPage() {
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="firstname" className="form-label">Firstname</label>
-                    <input className="form-control" type="text" name="firstname"/>
+                    <input className="form-control" type="text" name="firstname" required />
                 </div>
                 <div className="col">
                     <label htmlFor="lastname" className="form-label">Lastname</label>
-                    <input className="form-control" type="text" name="lastname"/>
+                    <input className="form-control" type="text" name="lastname" required/>
                 </div>
                 <div className="col">
                     <label htmlFor="birthdate" className="form-label">Birthdate</label>
-                    <input className="form-control" type="text" name="birthdate"/>
+                    <input className="form-control" type="date" name="birthdate" required />
                 </div>
             </div>
             <div className="row mb-3">
                 <div className="col">
                 <label htmlFor="phonenumber" className="form-label">Phonenumber</label>
-                <input className="form-control" type="text" name="phonenumber"/>
+                <input className="form-control" type="text" name="phonenumber" required />
                 </div>
             </div>
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="address" className="form-label">Address</label>
-                    <input type="text" className="form-control" name="address" />
+                    <input type="text" className="form-control" name="address" required />
                 </div>
                 <div className="col">
                     <label htmlFor="city" className="form-label">City</label>
-                    <input type="text" className="form-control" name="city" />
+                    <input type="text" className="form-control" name="city" required />
                 </div>
                 <div className="col">
                     <label htmlFor="postalcode" className="form-label">Postal Code</label>
-                    <input type="text" className="form-control" name="postalcode"/>
+                    <input type="text" className="form-control" name="postalcode" required />
                 </div>
             </div>
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="status" className="form-label">Status</label>
-                    <input type="text" className="form-control" name="status" />
+                    <select className="form-control" name="status">
+                        {statusOptions.map((status) => (<option value={status.value}>{status.label}</option>))}
+                    </select>
                 </div>
                 <div className="col">
                     <label htmlFor="salary" className="form-label">Salary</label>
-                    <input type="text" className="form-control" name="salary" />
+                    <input type="text" className="form-control" name="salary" required />
                 </div>
             </div>
             <div className="row">

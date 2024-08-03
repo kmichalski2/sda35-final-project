@@ -49,20 +49,28 @@
       "city": "Kraków"
     },
     {
-      "id": "69e3",
-      "firstname": ""
+      "id": "4a74",
+      "firstname": "Jan",
+      "lastname": "Kowalsli",
+      "birthdate": "2024-08-08",
+      "phonenumber": "123123",
+      "address": "Kraków",
+      "city": "Warszawska",
+      "postalcode": "11011",
+      "status": "URLOP",
+      "salary": "500000"
     },
     {
-      "id": "",
-      "firstname": "3232332",
-      "lastname": "",
-      "birthdate": "",
-      "phonenumber": "232323",
-      "address": "332232",
-      "city": "",
-      "postalcode": "",
-      "status": "",
-      "salary": ""
+      "id": "cbfe",
+      "firstname": "Jan",
+      "lastname": "Tester",
+      "birthdate": "1999-01-12",
+      "phonenumber": "12312323",
+      "address": "12",
+      "city": "Kraków",
+      "postalcode": "11222",
+      "status": "FIRED",
+      "salary": "50000"
     }
   ]
 }

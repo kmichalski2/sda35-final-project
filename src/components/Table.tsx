@@ -120,7 +120,7 @@ export function Table({data}: TableProps) {
                 </tr>
                 </thead>
                 <tbody>
-                { displayData.map(item => <tr className='cursor-pointer' onClick={(event) => handleRowClick(event, item)}>
+                { displayData.map(item => <tr key={item.id} className='cursor-pointer' onClick={(event) => handleRowClick(event, item)}>
                     <td>{item.id}</td>
                     <td>{item.firstname}</td>
                     <td>{item.lastname}</td>
