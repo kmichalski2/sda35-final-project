@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Employee } from '../models/Employee';
+import { useNavigate } from 'react-router-dom';
 
 interface TableProps {
     data: Employee[];
 }
 
 export function Table({data}: TableProps) {
+    const navigate = useNavigate();
     const [displayData, setDisplayData] = useState<Employee[]>(data);
     const [sortKey, setSortKey] = useState<null | keyof Employee>(null);
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
@@ -55,6 +57,12 @@ export function Table({data}: TableProps) {
         setDisplayData(sortedData);
         setSortKey(key);
         setSortDirection(tempSortDirection);
+    }
+
+    const handleRowClick = (event: React.MouseEvent, selectedEmployee: Employee): void => {
+        event.preventDefault();
+
+        navigate('/details', { state: selectedEmployee});
     }
 
     const sortAsc = (a: Employee, b: Employee, key: keyof Employee): number => {
@@ -112,7 +120,7 @@ export function Table({data}: TableProps) {
                 </tr>
                 </thead>
                 <tbody>
-                { displayData.map(item => <tr>
+                { displayData.map(item => <tr className='cursor-pointer' onClick={(event) => handleRowClick(event, item)}>
                     <td>{item.id}</td>
                     <td>{item.firstname}</td>
                     <td>{item.lastname}</td>
