@@ -1,14 +1,25 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Employee } from "../models/Employee";
 
 export function DetailsPage() {
     const location = useLocation();
+    const navigate = useNavigate();
 
     const data: Employee = location.state;
 
+    const handleEditClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+        event.preventDefault();
+
+        navigate('/edit', { state: data });
+    }
+
     return (
         <>
-            <h1 className="pt-4 pb-4">Detaile Page</h1>
+            <div className="d-flex justify-content-between align-items-center">
+                <h1 className="pt-4 pb-4">Detaile Page</h1>
+                <button onClick={handleEditClick} className="btn btn-warning">Edit</button>
+            </div>
+     
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="firstname" className="form-label">Firstname</label>

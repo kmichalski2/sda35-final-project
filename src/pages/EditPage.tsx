@@ -1,11 +1,25 @@
-import { useNavigate } from "react-router-dom";
-import { createEmployee } from "../services/API";
-import { STATUS_OPTIONS, StatusOption } from "../models/StatusOption";
-import { useState } from "react";
 
-export function AddPage() {
+import { useLocation, useNavigate } from "react-router-dom";
+import { createEmployee } from "../services/API";
+import { STATUS_OPTIONS, StatusOption } from '../models/StatusOption';
+import { useState } from "react";
+import { Employee } from "../models/Employee";
+
+
+export function EditPage() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const data = location.state as Employee;
     const [statusOptions] = useState<StatusOption[]>(STATUS_OPTIONS);
+    const [firstname, setFirstname] = useState(data.firstname);
+    const [lastname, setLastname] = useState(data.lastname);
+    const [phonenumber, setPhonenumber] = useState(data.phonenumber);
+    const [birthdate, setBirthdate] = useState(data.birthdate);
+    const [salary, setSalary] = useState(data.salary);
+    const [status, setStatus] = useState(data.status);
+    const [address, setAddress] = useState(data.address);
+    const [city, setCity] = useState(data.city);
+    const [postalcode, setPostalcode] = useState(data.postalcode);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
@@ -26,55 +40,55 @@ export function AddPage() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h1 className="pt-4 pb-4">Add Employee</h1>
+            <h1 className="pt-4 pb-4">Edit Employee</h1>
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="firstname" className="form-label">Firstname</label>
-                    <input className="form-control" type="text" name="firstname" required />
+                    <input value={firstname} onChange={event => setFirstname(event.target.value)} className="form-control" type="text" name="firstname" required />
                 </div>
                 <div className="col">
                     <label htmlFor="lastname" className="form-label">Lastname</label>
-                    <input className="form-control" type="text" name="lastname" required/>
+                    <input value={lastname} onChange={event => setLastname(event?.target.value)} className="form-control" type="text" name="lastname" required/>
                 </div>
                 <div className="col">
                     <label htmlFor="birthdate" className="form-label">Birthdate</label>
-                    <input className="form-control" type="date" name="birthdate" required />
+                    <input value={birthdate} onChange={event => setBirthdate(event.target.value)} className="form-control" type="date" name="birthdate" required />
                 </div>
             </div>
             <div className="row mb-3">
                 <div className="col">
                 <label htmlFor="phonenumber" className="form-label">Phonenumber</label>
-                <input className="form-control" type="text" name="phonenumber" required />
+                <input value={phonenumber} onChange={(event => setPhonenumber(event.target.value))} className="form-control" type="text" name="phonenumber" required />
                 </div>
             </div>
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="address" className="form-label">Address</label>
-                    <input type="text" className="form-control" name="address" required />
+                    <input value={address} onChange={(event => setAddress(event.target.value))} type="text" className="form-control" name="address" required />
                 </div>
                 <div className="col">
                     <label htmlFor="city" className="form-label">City</label>
-                    <input type="text" className="form-control" name="city" required />
+                    <input value={city} onChange={(event => setCity(event.target.value))} type="text" className="form-control" name="city" required />
                 </div>
                 <div className="col">
                     <label htmlFor="postalcode" className="form-label">Postal Code</label>
-                    <input type="text" className="form-control" name="postalcode" required />
+                    <input value={postalcode} onChange={(event) => setPostalcode(event.target.value)} type="text" className="form-control" name="postalcode" required />
                 </div>
             </div>
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="status" className="form-label">Status</label>
-                    <select className="form-control" name="status">
+                    <select value={status} onChange={(event) => setStatus(event.target.value)} className="form-control" name="status">
                         {statusOptions.map((status) => (<option value={status.value}>{status.label}</option>))}
                     </select>
                 </div>
                 <div className="col">
                     <label htmlFor="salary" className="form-label">Salary</label>
-                    <input type="text" className="form-control" name="salary" required />
+                    <input value={salary} onChange={(event) => setSalary(event.target.value)} type="text" className="form-control" name="salary" required />
                 </div>
             </div>
             <div className="row">
-                <button className="btn btn-primary" type="submit">Add</button>
+                <button className="btn btn-primary" type="submit">Save</button>
             </div>
         </form>
     )
