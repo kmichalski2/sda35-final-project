@@ -1,4 +1,6 @@
-export const createEmployee = (newEmployee: Employee) => {
+import { Employee } from "../models/Employee";
+
+export const createEmployee = (newEmployee: Omit<Employee, 'id'>) => {
     const apiUrl = "http://localhost:3001/employees";
 
     return fetch(apiUrl, {

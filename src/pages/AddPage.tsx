@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { createEmployee } from "../services/API";
-import { Employee } from "../models/Employee";
 
 export function AddPage() {
     const navigate = useNavigate();
