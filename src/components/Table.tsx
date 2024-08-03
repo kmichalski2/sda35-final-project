@@ -62,7 +62,7 @@ export function Table({data}: TableProps) {
     const handleRowClick = (event: React.MouseEvent, selectedEmployee: Employee): void => {
         event.preventDefault();
 
-        navigate('/details', { state: selectedEmployee});
+        navigate('/details/' + selectedEmployee.id, { state: selectedEmployee});
     }
 
     const sortAsc = (a: Employee, b: Employee, key: keyof Employee): number => {

@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <EmployeesPage />
   },
   {
-    path: '/details',
+    path: '/details/:id',
     element: <DetailsPage />
   },
   {
