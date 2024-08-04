@@ -113,26 +113,32 @@ export function Table({data}: TableProps) {
             <div className='mb-3'>
                 <input onKeyUp={handleSearchType} placeholder={t('searchphrase')} type='search' className='form-control' />
             </div>
-            <table className='table'>
-                <thead>
-                <tr>
-                    <th className='cursor-pointer' onClick={(event) => handleSort(event,'id')}>{t('id')} {renderSortIcon('id')}</th>
-                    <th className='cursor-pointer' onClick={(event) => handleSort(event,'firstname')}>{t('firstname')} {renderSortIcon('firstname')}</th>
-                    <th className='cursor-pointer' onClick={(event) => handleSort(event,'lastname')}>{t('lastname')} {renderSortIcon('lastname')}</th>
-                    <th className='cursor-pointer' onClick={(event) => handleSort(event,'salary')}>{t('salary')} {renderSortIcon('salary')}</th>
-                    <th className='cursor-pointer' onClick={(event) => handleSort(event,'status')}>{t('status')} {renderSortIcon('status')}</th>
-                </tr>
-                </thead>
-                <tbody>
-                { displayData.map(item => <tr key={item.id} className='cursor-pointer' onClick={(event) => handleRowClick(event, item)}>
-                    <td>{item.id}</td>
-                    <td>{item.firstname}</td>
-                    <td>{item.lastname}</td>
-                    <td>{item.salary}</td>
-                    <td>{translateStatus(item.status)}</td>
-                </tr>)}
-                </tbody>
-            </table>
+            <div className='table-responsive'>
+                <table className='table'>
+                    <thead>
+                    <tr>
+                        <th className='cursor-pointer' onClick={(event) => handleSort(event,'id')}>{t('id')} {renderSortIcon('id')}</th>
+                        <th className='cursor-pointer' onClick={(event) => handleSort(event,'firstname')}>{t('firstname')} {renderSortIcon('firstname')}</th>
+                        <th className='cursor-pointer' onClick={(event) => handleSort(event,'lastname')}>{t('lastname')} {renderSortIcon('lastname')}</th>
+                        <th className='cursor-pointer' onClick={(event) => handleSort(event,'salary')}>{t('salary')} {renderSortIcon('salary')}</th>
+                        <th>Phonenumber</th>
+                        <th className='cursor-pointer' onClick={(event) => handleSort(event,'status')}>{t('status')} {renderSortIcon('status')}</th>
+                      
+                    </tr>
+                    </thead>
+                    <tbody>
+                    { displayData.map(item => <tr key={item.id} className='cursor-pointer' onClick={(event) => handleRowClick(event, item)}>
+                        <td>{item.id}</td>
+                        <td>{item.firstname}</td>
+                        <td>{item.lastname}</td>
+                        <td>{item.salary}</td>
+                        <td>{item.phonenumber}</td>
+                        <td>{translateStatus(item.status)}</td>
+                    </tr>)}
+                    </tbody>
+                </table>
+            </div>
+
         </>
         
     )

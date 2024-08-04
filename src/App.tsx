@@ -32,10 +32,13 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <header className='container d-flex align-items-center py-2'>
-        <BackButton />
-        <LanguageSelector />
-      </header>
+      <nav className='navbar bg-primary-subtle'>
+          <div className='container d-flex justify-content-between align-items-center'>
+            <BackButton />
+            <LanguageSelector />
+          </div>
+   
+      </nav>
       <main className='container'>
         <RouterProvider router={router} />
       </main>

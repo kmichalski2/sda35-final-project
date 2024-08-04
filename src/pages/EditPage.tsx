@@ -96,47 +96,47 @@ export function EditPage() {
             <h1 className="pt-4 pb-4">Edit Employee</h1>
 
             { data ? <section> 
-            <div className="row mb-3">
-                <div className="col">
+            <div className="row mb-3 row-gap-3">
+                <div className="col-12 col-md-4">
                     <label htmlFor="firstname" className="form-label">Firstname</label>
                     <input value={firstname} onChange={event => { setFirstname(event.target.value); checkValidity()} } className="form-control" type="text" name="firstname" required />
                 </div>
-                <div className="col">
+                <div className="col-12 col-md-4">
                     <label htmlFor="lastname" className="form-label">Lastname</label>
                     <input value={lastname} onChange={event => setLastname(event?.target.value)} className="form-control" type="text" name="lastname" required/>
                 </div>
-                <div className="col">
+                <div className="col-12 col-md-4">
             
                     <label htmlFor="birthdate" className="form-label">Birthdate</label>
                     <input value={formatDate(birthdate)} onChange={event => setBirthdate(new Date(event.target.value))} className="form-control" type="date" name="birthdate" required />
                 </div>
             </div>
-            <div className="row mb-3">
-                <div className="col">
+            <div className="row mb-3 row-gap-3">
+                <div className="col-12">
                 <label htmlFor="phonenumber" className="form-label">Phonenumber</label>
                 <input value={phonenumber} onChange={(event => setPhonenumber(+event.target.value))} className="form-control" type="text" name="phonenumber" required />
                 </div>
             </div>
-            <div className="row mb-3">
-                <div className="col">
+            <div className="row mb-3 row-gap-3">
+                <div className="col-12 col-md-4">
                     <label htmlFor="address" className="form-label">Address</label>
                     <input value={address} onChange={(event => setAddress(event.target.value))} type="text" className="form-control" name="address" required />
                 </div>
-                <div className="col">
+                <div className="col-12 col-md-4">
                     <label htmlFor="city" className="form-label">City</label>
                     <input value={city} onChange={(event => setCity(event.target.value))} type="text" className="form-control" name="city" required />
                 </div>
-                <div className="col">
+                <div className="col-12 col-md-4">
                     <label htmlFor="postalcode" className="form-label">Postal Code</label>
                     <input value={postalcode} onChange={(event) => setPostalcode(event.target.value)} type="text" className="form-control" name="postalcode" required />
                 </div>
             </div>
-            <div className="row mb-3">
-                <div className="col">
+            <div className="row mb-3 row-gap-3">
+                <div className="col-12 col-md-4">
                     <label htmlFor="status" className="form-label">Status</label>
                     <StatusSelect defaultValue={status} onChange={(event) => setStatus(event.target.value)} name="status"></StatusSelect>
                 </div>
-                <div className="col">
+                <div className="col-12 col-md-4">
                     <label htmlFor="salary" className="form-label">Salary</label>
                     <input value={salary?.toString()} onChange={(event) => setSalary(+event.target.value)} type="text" className="form-control" name="salary" required />
                 </div>
