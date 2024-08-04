@@ -4,6 +4,7 @@ import { EmployeesPage } from './pages/EmployeesPage'
 import { DetailsPage } from './pages/DetailsPage';
 import { AddPage } from './pages/AddPage';
 import { EditPage } from './pages/EditPage';
+import { LanguageSelector } from './components/LanguageSelector';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
+      <header className='container'>
+        <LanguageSelector />
+      </header>
       <main className='container'>
         <RouterProvider router={router} />
       </main>
