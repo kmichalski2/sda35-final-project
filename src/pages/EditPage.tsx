@@ -4,6 +4,7 @@ import { editEmployee, getEmployee } from "../services/API";
 import { STATUS_OPTIONS, StatusOption } from '../models/StatusOption';
 import { useEffect, useState } from "react";
 import { Employee, EmployeeStatus } from "../models/Employee";
+import { StatusSelect } from "../components/StatusSelect";
 
 
 export function EditPage() {
@@ -133,13 +134,11 @@ export function EditPage() {
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="status" className="form-label">Status</label>
-                    <select value={status} onChange={(event) => setStatus(event.target.value as EmployeeStatus)} className="form-control" name="status">
-                        {statusOptions.map((status) => (<option key={status.value} value={status.value}>{status.label}</option>))}
-                    </select>
+                    <StatusSelect defaultValue={status} onChange={(event) => setStatus(event.target.value)} name="status"></StatusSelect>
                 </div>
                 <div className="col">
                     <label htmlFor="salary" className="form-label">Salary</label>
-                    <input value={salary} onChange={(event) => setSalary(+event.target.value)} type="text" className="form-control" name="salary" required />
+                    <input value={salary?.toString()} onChange={(event) => setSalary(+event.target.value)} type="text" className="form-control" name="salary" required />
                 </div>
             </div>
             <div className="row">

@@ -3,6 +3,7 @@ import { createEmployee } from "../services/API";
 import { STATUS_OPTIONS, StatusOption } from "../models/StatusOption";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { StatusSelect } from "../components/StatusSelect";
 
 export function AddPage() {
     const navigate = useNavigate();
@@ -66,9 +67,7 @@ export function AddPage() {
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="status" className="form-label">{t('status')}</label>
-                    <select className="form-control" name="status">
-                        {statusOptions.map((status) => (<option key={status.value} value={status.value}>{status.label}</option>))}
-                    </select>
+                    <StatusSelect name="status"></StatusSelect>
                 </div>
                 <div className="col">
                     <label htmlFor="salary" className="form-label">{t('salary')}</label>
