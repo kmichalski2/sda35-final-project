@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 export interface ConfirmDialogProps {
     show: boolean;
     title: string;
@@ -7,6 +9,8 @@ export interface ConfirmDialogProps {
 }
 
 export function ConfirmDialog({ show, onConfirm, onCancel, title, description } : ConfirmDialogProps) {
+    const { t } = useTranslation();
+    
     return (
         <>
             <div className={'modal' + (show ? ' d-block' : ' d-none')} tabIndex={-1}>
@@ -20,8 +24,8 @@ export function ConfirmDialog({ show, onConfirm, onCancel, title, description } 
                             <p>{description}</p>
                         </div>
                         <div className="modal-footer">
-                            <button onClick={onCancel} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button onClick={onConfirm} type="button" className="btn btn-primary">Yes</button>
+                            <button onClick={onCancel} type="button" className="btn btn-secondary" data-bs-dismiss="modal">{t('cancel')}</button>
+                            <button onClick={onConfirm} type="button" className="btn btn-primary">{t('yes')}</button>
                         </div>
                     </div>
                 </div>

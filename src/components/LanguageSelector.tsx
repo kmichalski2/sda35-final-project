@@ -1,12 +1,22 @@
+import React from "react";
 import i18n from "../i18n"
 
 export function LanguageSelector() {
-    const onLanguageClick = (countryCode: string): void => {
-        i18n.changeLanguage(countryCode);
+    const languages = [
+        { code: 'pl', label: 'Polski' },
+        { code: 'en', label: 'English' }
+    ]
+    const selectedLanguage = i18n.language;
+
+    const onLanguageChange = (event: React.ChangeEvent): void => {
+        const select = event.target as HTMLSelectElement;
+        console.log(select.value);
+        i18n.changeLanguage(select.value);
     }
 
     return (<>
-        <button onClick={() => onLanguageClick('en')} className="btn btn-light btn-lg">🇬🇧</button>
-        <button onClick={() => onLanguageClick('pl')} className="btn btn-light btn-lg">🇵🇱</button>
+        <select onChange={onLanguageChange} className="form-control mt-2" style={{width: '150px'}}>
+            { languages.map((language) => <option key={language.code} value={language.code} selected={language.code === selectedLanguage}>{language.label}</option> )}
+        </select>
     </>)
 }
