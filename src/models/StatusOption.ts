@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { EmployeeStatus } from "./Employee";
 
 export interface StatusOption { 
@@ -8,3 +9,13 @@ export interface StatusOption {
 export const STATUS_OPTIONS: EmployeeStatus[] = [
     "FIRED", "HIRED", "ON_LEAVE"
 ]
+
+export const useTranslateStatus = (): {
+    translateStatus: (s: EmployeeStatus) => string
+} => {
+    const { t } = useTranslation();
+
+    const translateStatus = (s: EmployeeStatus) => t('status_' + s);
+
+    return { translateStatus };
+}

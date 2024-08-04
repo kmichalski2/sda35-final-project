@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { getEmployee, deleteEmployee } from "../services/API";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { useTranslation } from "react-i18next";
+import { useTranslateStatus } from "../models/StatusOption";
 
 export function DetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
+    const { translateStatus } = useTranslateStatus();
     const { t } = useTranslation();
     const { id } = useParams();
     const [data, setData] = useState<Employee>(location.state);
@@ -103,7 +105,7 @@ export function DetailsPage() {
                 </div>
                 <div className="col">
                     <label htmlFor="status" className="form-label">{t('status')}</label>
-                    <input type="text" className="form-control" id="status" value={data.status} readOnly />
+                    <input type="text" className="form-control" id="status" value={translateStatus(data.status)} readOnly />
                 </div>
                 <div className="col">
                     <label htmlFor="salary" className="form-label">{t('salary')}</label>
