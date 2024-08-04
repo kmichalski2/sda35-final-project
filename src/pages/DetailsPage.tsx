@@ -14,7 +14,6 @@ export function DetailsPage() {
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
     useEffect(() => {
-        console.log(data, id);
         if (!data && id) {
             getEmployee(id).then(employee => {
                 setData(employee);

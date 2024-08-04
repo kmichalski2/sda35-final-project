@@ -10,7 +10,6 @@ export function LanguageSelector() {
 
     const onLanguageChange = (event: React.ChangeEvent): void => {
         const select = event.target as HTMLSelectElement;
-        console.log(select.value);
         i18n.changeLanguage(select.value);
     }
 
