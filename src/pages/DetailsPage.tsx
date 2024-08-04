@@ -50,7 +50,7 @@ export function DetailsPage() {
 
     return (
         <>
-            <ConfirmDialog show={showDeleteConfirm} onConfirm={handleConfirmDeleteDialog} onCancel={handleCancelDeleteDialog}></ConfirmDialog>
+            <ConfirmDialog show={showDeleteConfirm} onConfirm={handleConfirmDeleteDialog} onCancel={handleCancelDeleteDialog} title="Confirmation" description="Are you that you want to remove this employee?"></ConfirmDialog>
 
             <div className="d-flex justify-content-between align-items-center">
                 <h1 className="pt-4 pb-4">Detaile Page</h1>
