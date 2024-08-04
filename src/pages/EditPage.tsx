@@ -1,27 +1,54 @@
 
-import { useLocation, useNavigate } from "react-router-dom";
-import { editEmployee } from "../services/API";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { editEmployee, getEmployee } from "../services/API";
 import { STATUS_OPTIONS, StatusOption } from '../models/StatusOption';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Employee, EmployeeStatus } from "../models/Employee";
 
 
 export function EditPage() {
     const navigate = useNavigate();
     const location = useLocation();
-    const data = location.state as Employee;
-    console.log(data);
+    const { id } = useParams();
+
+    const [data, setData] = useState<Employee>(location.state);
     const [statusOptions] = useState<StatusOption[]>(STATUS_OPTIONS);
-    const [firstname, setFirstname] = useState(data.firstname);
-    const [lastname, setLastname] = useState(data.lastname);
-    const [phonenumber, setPhonenumber] = useState(data.phonenumber);
-    const [birthdate, setBirthdate] = useState(data.birthdate);
-    const [salary, setSalary] = useState(data.salary);
-    const [status, setStatus] = useState(data.status);
-    const [address, setAddress] = useState(data.address);
-    const [city, setCity] = useState(data.city);
-    const [postalcode, setPostalcode] = useState(data.postalcode);
-    const [isFormValid, setIsFormValid] = useState(true);
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [phonenumber, setPhonenumber] = useState<number | null>(null);
+    const [birthdate, setBirthdate] = useState<Date | null>(null);
+    const [salary, setSalary] = useState<number | null>(null);
+    const [status, setStatus] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [postalcode, setPostalcode] = useState('');
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        if (!data && !!id) {
+            // Zaladuj dane z API
+            getEmployee(id).then(employee => {
+                setData(employee);
+                setFormState(employee);
+                checkValidity();
+            })
+        } else {
+            setFormState(data);
+            checkValidity();
+        }
+    }, [data, id]);
+
+    const setFormState = (data: Omit<Employee, 'id'>): void => {
+        setFirstname(data.firstname);
+        setLastname(data.lastname);
+        setPhonenumber(data.phonenumber);
+        setBirthdate(data.birthdate);
+        setSalary(data.salary);
+        setStatus(data.status);
+        setAddress(data.address);
+        setCity(data.city);
+        setPostalcode(data.postalcode);
+    }
 
     const checkValidity = (): void => {
         const form = document.querySelector<HTMLFormElement>("#edit-form");
@@ -52,16 +79,22 @@ export function EditPage() {
     }
 
     const formatDate = (date: Date): string => {
-        const year = date.getFullYear(); 
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).length > 1 ? String(date.getDate()) : '0' + date.getDate();
-
-        return `${year}-${month}-${day}`;
+        if (date) {
+            const year = date.getFullYear(); 
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).length > 1 ? String(date.getDate()) : '0' + date.getDate();
+    
+            return `${year}-${month}-${day}`;
+        }
+        
+        return '';
     }
 
     return (
         <form onSubmit={handleSubmit} id="edit-form">
             <h1 className="pt-4 pb-4">Edit Employee</h1>
+
+            { data ? <section> 
             <div className="row mb-3">
                 <div className="col">
                     <label htmlFor="firstname" className="form-label">Firstname</label>
@@ -112,6 +145,7 @@ export function EditPage() {
             <div className="row">
                 <button disabled={!isFormValid} className={"btn btn-primary " + (isFormValid ? "" : "btn-disabled")} type="submit">Save</button>
             </div>
+            </section> : '' }
         </form>
     )
 }

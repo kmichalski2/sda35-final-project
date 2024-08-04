@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     element: <AddPage />
   },
   {
-    path: '/edit',
+    path: '/edit/:id',
     element: <EditPage />
   }
 ]);

@@ -30,6 +30,18 @@ export const editEmployee = (employee: Employee) => {
     })
 }
 
+export const deleteEmployee = (id: string): Promise<boolean> => {
+    const apiUrl ="http://localhost:3001/employees/" + id;
+
+    return fetch(apiUrl, { method: "DELETE" }).then(response => {
+        if (response.ok) {
+            return true;
+        } else {
+            return false;
+        }
+    })
+}
+
 export const getEmployee = (id: string): Promise<Employee> => {
     const apiUrl = "http://localhost:3001/employees/" + id;
 

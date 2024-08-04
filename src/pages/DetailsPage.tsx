@@ -1,13 +1,15 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Employee } from "../models/Employee";
 import { useEffect, useState } from "react";
-import { getEmployee } from "../services/API";
+import { getEmployee, deleteEmployee } from "../services/API";
+import { ConfirmDialog } from "../components/ConfirmDialog";
 
 export function DetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const { id } = useParams();
-    const [data, setData] = useState<Employee>(location.state)
+    const [data, setData] = useState<Employee>(location.state);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
     useEffect(() => {
         console.log(data, id);
@@ -21,11 +23,27 @@ export function DetailsPage() {
     const handleEditClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         event.preventDefault();
 
-        navigate('/edit', { state: data });
+        navigate('/edit/' + data.id , { state: data });
+    }
+
+    const handleDelete = (event: React.MouseEvent): void => {
+        event.preventDefault();
+
+        deleteEmployee(id as string).then(response => {
+            if (response) {
+                navigate('/');
+            }
+        })
+    }
+
+    const handleCancel = (): void => {
+        setShowDeleteConfirm(false);
     }
 
     return (
         <>
+            <ConfirmDialog show={showDeleteConfirm} onConfirm={handleCancel}></ConfirmDialog>
+
             <div className="d-flex justify-content-between align-items-center">
                 <h1 className="pt-4 pb-4">Detaile Page</h1>
                 <button onClick={handleEditClick} className="btn btn-warning">Edit</button>
