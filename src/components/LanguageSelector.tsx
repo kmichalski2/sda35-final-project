@@ -6,7 +6,7 @@ export function LanguageSelector() {
         { code: 'pl', label: 'Polski' },
         { code: 'en', label: 'English' }
     ]
-    const selectedLanguage = i18n.language;
+    const initLanguage = i18n.language;
 
     const onLanguageChange = (event: React.ChangeEvent): void => {
         const select = event.target as HTMLSelectElement;
@@ -14,8 +14,8 @@ export function LanguageSelector() {
     }
 
     return (<>
-        <select onChange={onLanguageChange} className="form-control mt-2" style={{width: '150px'}}>
-            { languages.map((language) => <option key={language.code} value={language.code} selected={language.code === selectedLanguage}>{language.label}</option> )}
+        <select onChange={onLanguageChange} className="form-control" style={{width: '150px'}} defaultValue={initLanguage}>
+            { languages.map((language) => <option key={language.code} value={language.code}>{language.label}</option> )}
         </select>
     </>)
 }

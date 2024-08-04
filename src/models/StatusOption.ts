@@ -5,17 +5,6 @@ export interface StatusOption {
     value: EmployeeStatus 
 }
 
-export const STATUS_OPTIONS: StatusOption[] = [
-    {
-        label: 'Zatrudniony',
-        value: 'HIRED'
-    },
-    {
-        label: 'Na Urlopie',
-        value: 'ON_LEAVE'
-    },
-    {
-        label: 'Zwolniony',
-        value: 'FIRED'
-    }
+export const STATUS_OPTIONS: EmployeeStatus[] = [
+    "FIRED", "HIRED", "ON_LEAVE"
 ]

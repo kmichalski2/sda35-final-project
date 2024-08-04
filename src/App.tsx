@@ -1,10 +1,12 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom'
 import './App.css'
 import { EmployeesPage } from './pages/EmployeesPage'
 import { DetailsPage } from './pages/DetailsPage';
 import { AddPage } from './pages/AddPage';
 import { EditPage } from './pages/EditPage';
 import { LanguageSelector } from './components/LanguageSelector';
+import { BackButton } from './components/BackButton';
+import { useState } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -25,10 +27,13 @@ const router = createBrowserRouter([
   }
 ]);
 
+
+
 function App() {
   return (
     <>
-      <header className='container'>
+      <header className='container d-flex align-items-center py-2'>
+        <BackButton />
         <LanguageSelector />
       </header>
       <main className='container'>

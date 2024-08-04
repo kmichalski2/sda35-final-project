@@ -134,7 +134,7 @@ export function EditPage() {
                 <div className="col">
                     <label htmlFor="status" className="form-label">Status</label>
                     <select value={status} onChange={(event) => setStatus(event.target.value as EmployeeStatus)} className="form-control" name="status">
-                        {statusOptions.map((status) => (<option value={status.value}>{status.label}</option>))}
+                        {statusOptions.map((status) => (<option key={status.value} value={status.value}>{status.label}</option>))}
                     </select>
                 </div>
                 <div className="col">

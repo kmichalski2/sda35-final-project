@@ -47,8 +47,6 @@ export function DetailsPage() {
         setShowDeleteConfirm(true);
     }
 
-   
-
     return (
         <>
             <ConfirmDialog show={showDeleteConfirm} onConfirm={handleConfirmDeleteDialog} onCancel={handleCancelDeleteDialog} title={t('confirmation')} description={t('delete_dialog_description')}></ConfirmDialog>
