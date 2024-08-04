@@ -26,7 +26,7 @@ export function DetailsPage() {
         navigate('/edit/' + data.id , { state: data });
     }
 
-    const handleDelete = (event: React.MouseEvent): void => {
+    const handleConfirmDeleteDialog = (event: React.MouseEvent): void => {
         event.preventDefault();
 
         deleteEmployee(id as string).then(response => {
@@ -36,17 +36,29 @@ export function DetailsPage() {
         })
     }
 
-    const handleCancel = (): void => {
+    const handleCancelDeleteDialog = (): void => {
         setShowDeleteConfirm(false);
     }
 
+    const handleDeleteClick = (event: React.MouseEvent): void => {
+        event.preventDefault();
+
+        setShowDeleteConfirm(true);
+    }
+
+   
+
     return (
         <>
-            <ConfirmDialog show={showDeleteConfirm} onConfirm={handleCancel}></ConfirmDialog>
+            <ConfirmDialog show={showDeleteConfirm} onConfirm={handleConfirmDeleteDialog} onCancel={handleCancelDeleteDialog}></ConfirmDialog>
 
             <div className="d-flex justify-content-between align-items-center">
                 <h1 className="pt-4 pb-4">Detaile Page</h1>
-                <button onClick={handleEditClick} className="btn btn-warning">Edit</button>
+
+                <div>
+                    <button onClick={handleDeleteClick} className="btn btn-danger">Delete</button>
+                    <button onClick={handleEditClick} className="btn btn-warning">Edit</button>
+                </div>
             </div>
      
             { data ? 

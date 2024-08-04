@@ -47,18 +47,6 @@
       "postalcode": "11011",
       "status": "URLOP",
       "salary": "500000"
-    },
-    {
-      "id": "cbfe",
-      "firstname": "Jan",
-      "lastname": "Tester",
-      "birthdate": "1999-01-12",
-      "phonenumber": "12312323",
-      "address": "12",
-      "city": "Kraków",
-      "postalcode": "11222",
-      "status": "FIRED",
-      "salary": "50000"
     }
   ]
 }
