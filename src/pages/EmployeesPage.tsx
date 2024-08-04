@@ -29,7 +29,10 @@ export function EmployeesPage() {
                 <button onClick={handleAddClick} className="btn btn-primary">{t('add')}</button>
             </div>
 
-            { data.length > 0 ? <Table data={data}></Table> : ''}  
+            <div className="w-100 text-center">
+            { data.length > 0 ? <Table data={data}></Table> : <div className="spinner-border text-warning" role="status">
+              <span className="visually-hidden">Loading...</span></div>}
+            </div>
         </>
     )
 }
