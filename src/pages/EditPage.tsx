@@ -110,13 +110,13 @@ export function EditPage() {
                 <div className="col-12 col-md-4">
             
                     <label htmlFor="birthdate" className="form-label">Birthdate</label>
-                    <input value={formatDate(birthdate)} onChange={event => setBirthdate(new Date(event.target.value))} className="form-control" type="date" name="birthdate" required />
+                    <input value={formatDate(birthdate ? birthdate : new Date())} onChange={event => setBirthdate(new Date(event.target.value))} className="form-control" type="date" name="birthdate" required />
                 </div>
             </div>
             <div className="row mb-3 row-gap-3">
                 <div className="col-12">
                 <label htmlFor="phonenumber" className="form-label">Phonenumber</label>
-                <input value={phonenumber} onChange={(event => setPhonenumber(+event.target.value))} className="form-control" type="text" name="phonenumber" required />
+                <input value={phonenumber ? phonenumber.toString() : ''}  onChange={(event => setPhonenumber(+event.target.value))} className="form-control" type="text" name="phonenumber" required />
                 </div>
             </div>
             <div className="row mb-3 row-gap-3">
@@ -136,7 +136,7 @@ export function EditPage() {
             <div className="row mb-3 row-gap-3">
                 <div className="col-12 col-md-4">
                     <label htmlFor="status" className="form-label">Status</label>
-                    <StatusSelect defaultValue={status} onChange={(event) => setStatus(event.target.value)} name="status"></StatusSelect>
+                    <StatusSelect defaultValue={status} onChange={(status) => setStatus(status)} name="status"></StatusSelect>
                 </div>
                 <div className="col-12 col-md-4">
                     <label htmlFor="salary" className="form-label">Salary</label>

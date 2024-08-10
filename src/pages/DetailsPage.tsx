@@ -75,13 +75,13 @@ export function DetailsPage() {
                         </div>
                         <div className="col-12 col-md-4">
                             <label htmlFor="birthdate" className="form-label">{t('birthdate')}</label>
-                            <input className="form-control" type="text" id="birthdate" value={data.birthdate.toDateString()} readOnly />
+                            <input className="form-control" type="text" id="birthdate" value={data.birthdate ? data.birthdate.toDateString() : ''} readOnly />
                         </div>
                     </div>
             <div className="row mb-3 row-gap-3">
                 <div className="col-12">
                 <label htmlFor="phonenumber" className="form-label">{t('phonenumber')}</label>
-                <input className="form-control" type="text" id="phonenumber" value={data.phonenumber} readOnly />
+                <input className="form-control" type="text" id="phonenumber" value={data.phonenumber || ''} readOnly />
                 </div>
             </div>
             <div className="row mb-3 row-gap-3">

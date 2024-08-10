@@ -69,7 +69,7 @@ export const getAllEmployees = (): Promise<Employee[]> => {
             return response.json().then(data => {
                 const employees = data as Employee[];
                 return employees.map(employee => {
-                    employee.birthdate = new Date(employee.birthdate);
+                    employee.birthdate = employee.birthdate ? new Date(employee.birthdate) : null;
                     return employee;
                 })
             })

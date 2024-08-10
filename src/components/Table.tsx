@@ -23,7 +23,7 @@ export function Table({data}: TableProps) {
         const d = data.filter(item => {
             return item.firstname.toLowerCase().includes(phrase) || 
                    item.lastname.toLowerCase().includes(phrase) || 
-                   item.phonenumber.toString().includes(phrase); 
+                   item.phonenumber?.toString().includes(phrase); 
                    
         });
 
@@ -70,6 +70,10 @@ export function Table({data}: TableProps) {
     }
 
     const sortAsc = (a: Employee, b: Employee, key: keyof Employee): number => {
+        if (a[key] === null || b[key] === null) {
+            throw new Error('Data should not be null');
+        }
+        
         if (a[key] > b[key]) {
             return 1; 
         }
@@ -82,6 +86,10 @@ export function Table({data}: TableProps) {
     }
 
     const sortDesc = (a: Employee, b: Employee, key: keyof Employee): number => {
+        if (a[key] === null || b[key] === null) {
+            throw new Error('Data should not be null');
+        }
+        
         if (a[key] < b[key]) {
             return 1; 
         }
