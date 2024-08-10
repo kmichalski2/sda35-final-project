@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Employee } from '../models/Employee';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useTranslateStatus } from '../models/StatusOption';
+import { Status } from './Status';
 
 interface TableProps {
     data: Employee[];
@@ -11,7 +11,6 @@ interface TableProps {
 export function Table({data}: TableProps) {
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const { translateStatus } = useTranslateStatus();
     const [displayData, setDisplayData] = useState<Employee[]>(data);
     const [sortKey, setSortKey] = useState<null | keyof Employee>(null);
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc' | null>(null);
@@ -141,7 +140,7 @@ export function Table({data}: TableProps) {
                         <td>{item.lastname}</td>
                         <td>{item.salary}</td>
                         <td>{item.phonenumber}</td>
-                        <td>{translateStatus(item.status)}</td>
+                        <td><Status data={item.status}></Status></td>
                     </tr>)}
                     </tbody>
                 </table>

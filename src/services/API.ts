@@ -1,7 +1,7 @@
 import { config } from "../config";
 import { Employee } from "../models/Employee";
 
-const employeesUrl = config.baseApirUrl + "employee/";
+const employeesUrl = config.baseApiUrl + "employee/";
 
 export const createEmployee = (newEmployee: Omit<Employee, 'id'>) => {
     const apiUrl = employeesUrl;
