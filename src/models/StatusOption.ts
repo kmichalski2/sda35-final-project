@@ -11,11 +11,11 @@ export const STATUS_OPTIONS: EmployeeStatus[] = [
 ]
 
 export const useTranslateStatus = (): {
-    translateStatus: (s: EmployeeStatus) => string
+    translateStatus: (s: string) => string
 } => {
     const { t } = useTranslation();
 
-    const translateStatus = (s: EmployeeStatus) => t('status_' + s);
+    const translateStatus = (s: string) => t('status_' + s);
 
     return { translateStatus };
 }

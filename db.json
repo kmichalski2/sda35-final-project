@@ -1,11 +1,11 @@
 {
-  "employees": [
+  "employee": [
     {
       "id": "1",
       "firstname": "Adam",
       "lastname": "Nowak",
       "salary": 25000,
-      "status": "FIRED",
+      "status": "asdssdds33434",
       "phonenumber": 345345345,
       "birthdate": "1996-04-04T00:00:00.000Z",
       "address": "Francuska 22",
@@ -19,7 +19,7 @@
       "phonenumber": 678678678,
       "birthdate": "2024-11-19T00:00:00.000Z",
       "salary": 24000,
-      "status": "ON_LEAVE",
+      "status": "FIRED",
       "address": "Francuska 22",
       "city": "Warszawa",
       "postalcode": "44333"
@@ -45,7 +45,7 @@
       "address": "Woje",
       "city": "Warszawa",
       "postalcode": "10-123",
-      "status": "FIRED",
+      "status": "HIRED",
       "salary": "10000"
     }
   ]

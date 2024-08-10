@@ -30,7 +30,8 @@ const resources = {
             "delete_dialog_description": "Are you that you want to remove this employee?",
             "status_HIRED": "Hired",
             "status_FIRED": "Fired",
-            "status_ON_LEAVE": "On Leave"
+            "status_ON_LEAVE": "On Leave",
+            "status_UNKNOWN": "Unknown"
         }
     },
     pl: {
@@ -61,7 +62,8 @@ const resources = {
             "delete_dialog_description": "Czy jesteś pewien, czy chcesz usunąć tego pracownika?",
             "status_HIRED": "Zatrudniony",
             "status_FIRED": "Zwolniony",
-            "status_ON_LEAVE": "Na Urlopie"
+            "status_ON_LEAVE": "Na Urlopie",
+            "status_UNKNOWN": "Nieznany"
         }
     }
 }
