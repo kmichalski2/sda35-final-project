@@ -4,11 +4,11 @@ export interface Employee {
   lastname: string;
   salary: number;
   status: EmployeeStatus;
-  phonenumber: number;
+  phonenumber: number | null;
   address: string;
   city: string;
   postalcode: string;
-  birthdate: Date;
+  birthdate: Date | null;
 }
 
 export type EmployeeStatus = 'HIRED' | 'FIRED' | 'ON_LEAVE';

@@ -1,14 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { createEmployee } from "../services/API";
-import { STATUS_OPTIONS, StatusOption } from "../models/StatusOption";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StatusSelect } from "../components/StatusSelect";
 
 export function AddPage() {
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const [statusOptions] = useState<StatusOption[]>(STATUS_OPTIONS);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
@@ -16,13 +13,15 @@ export function AddPage() {
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
 
-        const data: any = {};
+        const data: Record<string, string> = {};
 
         formData.forEach((value, key) => {
-            data[key] = value;
+            data[key] = value as string;
         })
 
-        createEmployee(data).then(() => {
+        // TODO: Try to find better typing method
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        createEmployee(data as any).then(() => {
             navigate('/');
         });
     }

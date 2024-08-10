@@ -1,11 +1,9 @@
 
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { editEmployee, getEmployee } from "../services/API";
-import { STATUS_OPTIONS, StatusOption } from '../models/StatusOption';
 import { useEffect, useState } from "react";
 import { Employee, EmployeeStatus } from "../models/Employee";
 import { StatusSelect } from "../components/StatusSelect";
-
 
 export function EditPage() {
     const navigate = useNavigate();
@@ -13,13 +11,12 @@ export function EditPage() {
     const { id } = useParams();
 
     const [data, setData] = useState<Employee>(location.state);
-    const [statusOptions] = useState<StatusOption[]>(STATUS_OPTIONS);
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [phonenumber, setPhonenumber] = useState<number | null>(null);
     const [birthdate, setBirthdate] = useState<Date | null>(null);
     const [salary, setSalary] = useState<number | null>(null);
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState<EmployeeStatus>('FIRED');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [postalcode, setPostalcode] = useState('');
@@ -60,15 +57,20 @@ export function EditPage() {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
+        const form = event.target as HTMLFormElement;
 
+        if (!form.checkValidity()) {
+            return;
+        }
+    
         const employee: Employee = {
             id: data.id,
             firstname,
             lastname,
-            phonenumber,
+            phonenumber: phonenumber,
             birthdate,
-            salary,
-            status,
+            salary: salary || 0,
+            status: status,
             address,
             city,
             postalcode
