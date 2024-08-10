@@ -8,23 +8,17 @@ export interface StatusPros {
 export function Status({ data }: StatusPros) {
     const {translateStatus} = useTranslateStatus();
 
-    const getClassName = (status: EmployeeStatus): string => {
-        switch (status) {
-            case 'FIRED':
-                return 'text-bg-danger';
-            case 'ON_LEAVE':
-                return 'text-bg-warning';
-            case 'HIRED':
-                return 'text-bg-success';
-            default: 
-                return 'text-bg-secondary';
-        }
+    const getClassName = (status: string): string => {
+        const classes = new Map([
+            ['FIRED', 'text-bg-danger'],
+            ['ON_LEAVE', 'text-bg-warning'],
+            ['HIRED', 'text-bg-success'],
+            ['UNKNOWN', 'text-bg-secondary']
+        ])
+
+        return classes.get(status) as string;
     }
 
-    const status = data as EmployeeStatus;
-    if (STATUS_OPTIONS.includes(status)) {
-        return (<span className={"badge " + getClassName(status)}>{ translateStatus(status) }</span>);
-    } else {
-        return (<span className="badge text-bg-secondary">Nieokreślony</span>);
-    }
+    const status = STATUS_OPTIONS.includes(data as EmployeeStatus) ? data : 'UNKNOWN';
+    return (<span data-testid="status" className={"badge " + getClassName(status)}>{ translateStatus(status) }</span>);
 }
